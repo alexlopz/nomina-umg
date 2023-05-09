@@ -7,16 +7,12 @@ const items: MenuItemType[] = [
     link: { href: '/dashboard' },
   },
   {
-    title: 'Catalogos',
+    title: 'Deducciones',
     icon: { name: 'arrowhead-right-outline' },
     children: [
       {
-        title: 'Deducciones',
-        link: { href: '/catalogos/deducciones' },
-      },
-      {
-        title: 'Tipos de Comisiones',
-        link: { href: '/catalogos/tipos-comisiones' },
+        title: 'Tipo de Ausencias',
+        link: { href: '/deducciones/ausencias' },
       },
     ],
   },
@@ -25,18 +21,24 @@ const items: MenuItemType[] = [
     icon: { name: 'arrowhead-right-outline' },
     children: [
       {
-        title: 'Horas Extras',
-        link: { href: '/empleados/horas-extras' },
+        title: 'Salarios',
+        link: { href: '/empleados/salarios' },
       },
       {
-        title: 'Prestamos',
-        link: { href: '/empleados/prestamos' },
+        title: 'Comisiones',
+        link: { href: '/empleados/comisiones' },
+      },
+      {
+        title: 'Nominas',
+        icon: { name: 'monitor-outline' },
+        link: { href: '/empleados/nominas' },
       },
     ],
   },
+
   {
     title: 'Test',
-    icon: { name: 'lock-outline' },
+    icon: { name: 'clipboard-outline' },
     children: [
       {
         title: 'Login',

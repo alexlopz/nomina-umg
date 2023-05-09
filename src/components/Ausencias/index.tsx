@@ -2,13 +2,13 @@ import { Button, Col, Row } from '@paljs/ui';
 import { IPlainObject } from 'definitions/IPlainObjects';
 import { ButtonWrap, InputWrap } from './style';
 
-const ComisionForm: React.FC<IPlainObject> = ({ handleSubmit }) => {
+const AusenciasForm: React.FC<IPlainObject> = (props) => {
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={props.handleSubmit}>
       <Row>
         <Col breakPoint={{ xs: 12, sm: 6 }}>
           <InputWrap fullWidth size="Medium">
-            <input type="text" placeholder="Nombre" />
+            <input type="text" placeholder="Id_empleado" />
           </InputWrap>
         </Col>
         <Col breakPoint={{ xs: 12, sm: 6 }}>
@@ -23,4 +23,4 @@ const ComisionForm: React.FC<IPlainObject> = ({ handleSubmit }) => {
     </form>
   );
 };
-export default ComisionForm;
+export default AusenciasForm;

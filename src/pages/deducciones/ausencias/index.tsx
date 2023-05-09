@@ -1,5 +1,5 @@
 import { Card, CardBody, CardHeader, Col, Container, Row } from '@paljs/ui';
-import ComisionForm from 'components/Catalogos/Comisiones';
+import AusenciasForm from 'components/Ausencias';
 import Tabla from 'components/Tabla';
 import Layout from 'Layouts';
 
@@ -24,27 +24,32 @@ const columns = [
 const data = [
   {
     id: 1,
-    nombre: 'Venta de Verano',
-    descripcion: 'Lorem ipsum',
+    nombre: 'Alex',
+    descripcion: 'Accidente',
   },
   {
     id: 2,
-    nombre: 'Afiliado',
-    descripcion: 'Lorem ipsum',
+    nombre: 'Marlon',
+    descripcion: 'Enfermedad',
+  },
+  {
+    id: 3,
+    nombre: 'Nestor',
+    descripcion: 'Suspencion',
   },
 ];
 
-const TiposComisiones = () => {
+const Ausencias = () => {
   return (
-    <Layout title={'Deducciones'}>
+    <Layout title={'Tipo de Ausencias'}>
+      <h1>Tipo de Ausencias</h1>
       <Row>
         <Col>
           <Container>
-            <h1>Tipo de comisiones</h1>
             <Card status="Primary">
-              <CardHeader>Ingresar comision</CardHeader>
+              <CardHeader>Ingrese Tipo de Ausencia</CardHeader>
               <CardBody>
-                <ComisionForm />
+                <AusenciasForm />
               </CardBody>
             </Card>
           </Container>
@@ -55,7 +60,7 @@ const TiposComisiones = () => {
         <Col>
           <Container>
             <Card status="Success">
-              <CardHeader>Listado de comisiones</CardHeader>
+              <CardHeader>Listado de Tipos de Ausencia</CardHeader>
               <CardBody>
                 <Tabla columns={columns} data={data} />
               </CardBody>
@@ -67,4 +72,4 @@ const TiposComisiones = () => {
   );
 };
 
-export default TiposComisiones;
+export default Ausencias;

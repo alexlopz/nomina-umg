@@ -1,5 +1,5 @@
 import { Card, CardBody, CardHeader, Col, Container, Row } from '@paljs/ui';
-import HorasExtrasForm from 'components/Empleados/horas';
+import SalariosForm from 'components/Empleados/salarios';
 import Tabla from 'components/Tabla';
 import Layout from 'Layouts';
 
@@ -7,11 +7,6 @@ const columns = [
   {
     name: 'Id',
     selector: (row: { id: any }) => row.id,
-    sortable: true,
-  },
-  {
-    name: 'ID Autorizacion',
-    selector: (row: { id_autorizacion: any }) => row.id_autorizacion,
     sortable: true,
   },
   {
@@ -24,30 +19,33 @@ const columns = [
     selector: (row: { descripcion: any }) => row.descripcion,
     sortable: true,
   },
+  {
+    name: 'Salario',
+    selector: (row: { salario: any }) => row.salario,
+    sortable: true,
+  },
 ];
 
 const data = [
   {
     id: 1,
-    id_autorizacion: 123,
-    fecha: '10/10/2023',
-    descripcion: 'Lorem ipsum',
+    fecha: '03/20/2023',
+    descripcion: 'mensual',
+    salario: 1000,
   },
 ];
 
-const HorasExtras = () => {
-  const miFuncion = () => {
-    console.log('hola mundo');
-  };
+const Salarios = () => {
   return (
-    <Layout title={'Horas Extras'}>
+    <Layout title={'Salarios'}>
+      <h1>Salarios</h1>
       <Row>
         <Col>
           <Container>
             <Card status="Primary">
-              <CardHeader>Ingresar Horas Extras</CardHeader>
+              <CardHeader>Ingrese los Salarios</CardHeader>
               <CardBody>
-                <HorasExtrasForm handleSubmit={miFuncion} />
+                <SalariosForm />
               </CardBody>
             </Card>
           </Container>
@@ -58,7 +56,7 @@ const HorasExtras = () => {
         <Col>
           <Container>
             <Card status="Primary">
-              <CardHeader>Listado Horas Extras</CardHeader>
+              <CardHeader>Lista de Salarios</CardHeader>
               <CardBody>
                 <Tabla columns={columns} data={data} />
               </CardBody>
@@ -70,4 +68,4 @@ const HorasExtras = () => {
   );
 };
 
-export default HorasExtras;
+export default Salarios;

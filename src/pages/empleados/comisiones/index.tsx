@@ -1,5 +1,5 @@
 import { Card, CardBody, CardHeader, Col, Container, Row } from '@paljs/ui';
-import HorasExtrasForm from 'components/Empleados/horas';
+import ComisionesForm from 'components/Empleados/comisiones';
 import Tabla from 'components/Tabla';
 import Layout from 'Layouts';
 
@@ -10,18 +10,18 @@ const columns = [
     sortable: true,
   },
   {
-    name: 'ID Autorizacion',
-    selector: (row: { id_autorizacion: any }) => row.id_autorizacion,
+    name: 'Tipo Comision',
+    selector: (row: { tipocomision: any }) => row.tipocomision,
     sortable: true,
   },
   {
-    name: 'Fecha',
-    selector: (row: { fecha: any }) => row.fecha,
+    name: 'Total a Pagar',
+    selector: (row: { totalapagar: any }) => row.totalapagar,
     sortable: true,
   },
   {
-    name: 'Descripcion',
-    selector: (row: { descripcion: any }) => row.descripcion,
+    name: 'Periodo',
+    selector: (row: { periodo: any }) => row.periodo,
     sortable: true,
   },
 ];
@@ -29,25 +29,23 @@ const columns = [
 const data = [
   {
     id: 1,
-    id_autorizacion: 123,
-    fecha: '10/10/2023',
-    descripcion: 'Lorem ipsum',
+    tipocomision: 'moneraria',
+    totalapagar: 1000,
+    periodo: 'enero',
   },
 ];
 
-const HorasExtras = () => {
-  const miFuncion = () => {
-    console.log('hola mundo');
-  };
+const Comisiones = () => {
   return (
-    <Layout title={'Horas Extras'}>
+    <Layout title={'Comisiones'}>
+      <h1>Comisiones</h1>
       <Row>
         <Col>
           <Container>
             <Card status="Primary">
-              <CardHeader>Ingresar Horas Extras</CardHeader>
+              <CardHeader>Ingrese Comisiones</CardHeader>
               <CardBody>
-                <HorasExtrasForm handleSubmit={miFuncion} />
+                <ComisionesForm />
               </CardBody>
             </Card>
           </Container>
@@ -58,7 +56,7 @@ const HorasExtras = () => {
         <Col>
           <Container>
             <Card status="Primary">
-              <CardHeader>Listado Horas Extras</CardHeader>
+              <CardHeader>Lista de Comisiones </CardHeader>
               <CardBody>
                 <Tabla columns={columns} data={data} />
               </CardBody>
@@ -70,4 +68,4 @@ const HorasExtras = () => {
   );
 };
 
-export default HorasExtras;
+export default Comisiones;

@@ -1,5 +1,5 @@
 import { Card, CardBody, CardHeader, Col, Container, Row } from '@paljs/ui';
-import DeduccionesForm from 'components/Catalogos/Deducciones';
+import DeduccionesForm from 'components/Deducciones';
 import Tabla from 'components/Tabla';
 import Layout from 'Layouts';
 
@@ -53,7 +53,6 @@ const Deducciones = () => {
       <Row>
         <Col>
           <Container>
-            <h1>Deducciones</h1>
             <Card status="Primary">
               <CardHeader>Ingresar deducciones</CardHeader>
               <CardBody>
