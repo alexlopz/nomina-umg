@@ -52,6 +52,22 @@ const items: MenuItemType[] = [
         title: 'Usuario',
         link: { href: '/empleados/usuario' },
       },
+      {
+        title: 'Nominas',
+        link: { href: '/empleados/nominas' },
+      },
+      {
+        title: 'Salarios',
+        link: { href: '/empleados/salarios' },
+      },
+      {
+        title: 'Comisiones',
+        link: { href: '/empleados/comisiones' },
+      },
+      {
+        title: 'Tipo Ausencia',
+        link: { href: '/empleados/tipoausencia' },
+      },
     ],
   },
   {
