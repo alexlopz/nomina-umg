@@ -16,17 +16,17 @@ const NominasForm: React.FC<IPlainObject> = ({ handleSubmit }) => {
             <input type="text" placeholder="Apellido" />
           </InputWrap>
         </Col>
-        <Col breakPoint={{ xs: 12, sm: 6 }}>
+        <Col breakPoint={{ xs: 12, sm: 4 }}>
           <InputWrap fullWidth size="Medium">
             <input type="text" placeholder="E-Mail" />
           </InputWrap>
         </Col>
-        <Col breakPoint={{ xs: 12, sm: 6 }}>
+        <Col breakPoint={{ xs: 12, sm: 4 }}>
           <InputWrap fullWidth size="Medium">
             <input type="text" placeholder="Contraseña" />
           </InputWrap>
         </Col>
-        <Col breakPoint={{ xs: 12, sm: 6 }}>
+        <Col breakPoint={{ xs: 12, sm: 4 }}>
           <InputWrap fullWidth size="Medium">
             <input type="text" placeholder="Identificacion del Empleado" />
           </InputWrap>
