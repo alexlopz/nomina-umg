@@ -1,4 +1,5 @@
 import { Button, Col, Row, Select } from '@paljs/ui';
+import CustomSpinner from 'components/CustomSpinner';
 import { IEmpleado } from 'definitions/IEmpleado';
 import { IPlainObject } from 'definitions/IPlainObjects';
 import { useEffect, useState } from 'react';
@@ -10,6 +11,7 @@ const HorasExtrasForm: React.FC<IPlainObject> = ({
   handleChange,
   handleFechaChange,
   handleSelectChange,
+  loading,
 }) => {
   const [datos, setDatos] = useState<any[]>([]);
   const generarDatos = () => {
@@ -32,30 +34,25 @@ const HorasExtrasForm: React.FC<IPlainObject> = ({
     <form onSubmit={handleSubmit}>
       <Row>
         <Col breakPoint={{ xs: 12, sm: 6 }}>
-          <label className="form-label">Empleado:</label>
+          <label>Empleado:</label>
           <SelectWrap>
             <Select options={datos} placeholder="Empleado" name="empleado" onChange={handleSelectChange} required />
           </SelectWrap>
         </Col>
-        {/* <Col breakPoint={{ xs: 12, sm: 6 }}>
-          <InputWrap fullWidth size="Medium">
-            <input type="number" placeholder="Id Autorizacion" />
-          </InputWrap>
-        </Col> */}
         <Col breakPoint={{ xs: 12, sm: 6 }}>
-          <label className="form-label">Descripcion:</label>
+          <label>Descripcion:</label>
           <InputWrap fullWidth size="Medium">
             <input type="text" placeholder="Descripcion" name="descripcion" onChange={handleChange} required />
           </InputWrap>
         </Col>
         <Col breakPoint={{ xs: 12, sm: 6 }}>
-          <label className="form-label">Fecha de evento:</label>
+          <label>Fecha de evento:</label>
           <InputWrap fullWidth size="Medium">
             <input type="date" placeholder="Fecha" name="fecha" onChange={handleFechaChange} required />
           </InputWrap>
         </Col>
         <Col breakPoint={{ xs: 12, sm: 6 }}>
-          <label className="form-label">Horas trabajadas:</label>
+          <label>Horas trabajadas:</label>
           <InputWrap fullWidth size="Medium">
             <input
               type="number"
@@ -68,7 +65,10 @@ const HorasExtrasForm: React.FC<IPlainObject> = ({
         </Col>
       </Row>
       <ButtonWrap align={'end'}>
-        <Button type="submit">Guardar</Button>
+        <Button type="submit">
+          Guardar
+          {loading && <CustomSpinner status="Primary" size="Small" />}
+        </Button>
       </ButtonWrap>
     </form>
   );

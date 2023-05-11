@@ -11,7 +11,7 @@ const columns = [
   },
   {
     name: 'Fecha',
-    selector: (row: { fecha: string }) => row.fecha,
+    selector: (row: { fecha: any }) => row.fecha.toDate().toISOString(),
     sortable: true,
   },
   {
