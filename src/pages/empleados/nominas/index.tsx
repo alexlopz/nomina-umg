@@ -1,35 +1,10 @@
-import { Card, CardBody, CardHeader, Col, Container, Row } from '@paljs/ui';
+import { Button, Card, CardBody, CardHeader, Col, Container, Row } from '@paljs/ui';
 import NominasForm from 'components/Nominas';
 import Tabla from 'components/Tabla';
+import { useFirestoreDeleteDocument } from 'hooks/useFirestoreDeleteDocument';
 import Layout from 'Layouts';
-
-const columns = [
-  {
-    name: 'Id',
-    selector: (row: { id: any }) => row.id,
-    sortable: true,
-  },
-  {
-    name: 'Apellido',
-    selector: (row: { apellido: any }) => row.apellido,
-    sortable: true,
-  },
-  {
-    name: 'E-mail',
-    selector: (row: { email: any }) => row.email,
-    sortable: true,
-  },
-  {
-    name: 'Contrasena',
-    selector: (row: { contrasena: any }) => row.contrasena,
-    sortable: true,
-  },
-  {
-    name: 'Id Empleado',
-    selector: (row: { id_empleado: any }) => row.id_empleado,
-    sortable: true,
-  },
-];
+import { useState } from 'react';
+import columns from './columnas';
 
 const data = [
   {
@@ -42,6 +17,31 @@ const data = [
 ];
 
 const Nominas = () => {
+  const [tablaColumnas, setTablaColumnas] = useState<any[]>([]);
+
+  const { loading: isLoadingDelete, handleSubmit: handleSubmitDeleteDocument } = useFirestoreDeleteDocument('nomina');
+
+  const insertarBotones = async () => {
+    const botones: any = {
+      name: 'Actions',
+      cell: (row: { id: string }) => (
+        <Button status="Danger" onClick={() => handleSubmitDeleteDocument(row.id)}>
+          Eliminar
+        </Button>
+      ),
+      ignoreRowClick: true,
+      _allowOverflow: true,
+      get allowOverflow() {
+        return this._allowOverflow;
+      },
+      set allowOverflow(value) {
+        this._allowOverflow = value;
+      },
+      button: true,
+    };
+    columns.push(botones);
+    setTablaColumnas(columns);
+  };
   return (
     <Layout title={'Nominas'}>
       <Row>
@@ -64,7 +64,7 @@ const Nominas = () => {
             <Card status="Primary">
               <CardHeader>Lista de Nominas</CardHeader>
               <CardBody>
-                <Tabla columns={columns} data={data} />
+                <Tabla columns={tablaColumnas} data={data} />
               </CardBody>
             </Card>
           </Container>
