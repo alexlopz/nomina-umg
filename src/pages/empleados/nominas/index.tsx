@@ -1,25 +1,47 @@
 import { Button, Card, CardBody, CardHeader, Col, Container, Row } from '@paljs/ui';
+import CustomSpinner from 'components/CustomSpinner';
 import NominasForm from 'components/Nominas';
 import Tabla from 'components/Tabla';
+import { Inominas } from 'definitions/Inominas';
+import { useFirestoreAddDocument } from 'hooks/useFirestoreAddDocument';
+import { useFirestoreCollection } from 'hooks/useFirestoreCollection';
 import { useFirestoreDeleteDocument } from 'hooks/useFirestoreDeleteDocument';
 import Layout from 'Layouts';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import columns from './columnas';
-
-const data = [
-  {
-    id: 1,
-    apellido: 'Monzon',
-    email: 'monzon@gmail,com',
-    contrasena: 123456,
-    id_empleado: 10101,
-  },
-];
 
 const Nominas = () => {
   const [tablaColumnas, setTablaColumnas] = useState<any[]>([]);
+  const [formulario, setFormulario] = useState<Inominas>();
 
-  const { loading: isLoadingDelete, handleSubmit: handleSubmitDeleteDocument } = useFirestoreDeleteDocument('nomina');
+  // Traer listado de nominas
+  const { data: dataNominas, loading: loadingNominas } = useFirestoreCollection('nominas');
+  console.log(dataNominas);
+
+  // Guardar documento
+  const {
+    success: successAdd,
+    loading: isLoadingAdd,
+    handleSubmit: handleSubmitAddDocument,
+  } = useFirestoreAddDocument('nominas', formulario);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormulario({ ...formulario, [event.target.name]: event.target.value });
+  };
+
+  // Eliminar de nomina
+  const { loading: isLoadingDelete, handleSubmit: handleSubmitDeleteDocument } = useFirestoreDeleteDocument('nominas');
+
+  // Traer listado de empleados
+  const { data: dataEmpleados, loading: loadingEmpleados } = useFirestoreCollection('empleados');
+
+  const router = useRouter();
+
+  const handleSelectChange = (event: any) => {
+    const nominas = event.label;
+    setFormulario({ ...formulario, apellido: nominas });
+  };
 
   const insertarBotones = async () => {
     const botones: any = {
@@ -30,18 +52,21 @@ const Nominas = () => {
         </Button>
       ),
       ignoreRowClick: true,
-      _allowOverflow: true,
-      get allowOverflow() {
-        return this._allowOverflow;
-      },
-      set allowOverflow(value) {
-        this._allowOverflow = value;
-      },
+      allowOverflow: true,
       button: true,
     };
     columns.push(botones);
     setTablaColumnas(columns);
   };
+
+  useEffect(() => {
+    insertarBotones();
+  }, []);
+
+  useEffect(() => {
+    if (successAdd) router.reload();
+  }, [successAdd]);
+
   return (
     <Layout title={'Nominas'}>
       <Row>
@@ -51,20 +76,29 @@ const Nominas = () => {
             <Card status="Primary">
               <CardHeader>Ingrese Nomina</CardHeader>
               <CardBody>
-                <NominasForm />
+                {!loadingEmpleados ? (
+                  <NominasForm
+                    empleados={dataEmpleados}
+                    handleSubmit={handleSubmitAddDocument}
+                    handleChange={handleChange}
+                    handleSelectChange={handleSelectChange}
+                    loading={isLoadingAdd}
+                  />
+                ) : (
+                  <CustomSpinner status="Primary" size="Large" padding />
+                )}
               </CardBody>
             </Card>
           </Container>
         </Col>
       </Row>
-
       <Row>
         <Col>
           <Container>
             <Card status="Primary">
               <CardHeader>Lista de Nominas</CardHeader>
               <CardBody>
-                <Tabla columns={tablaColumnas} data={data} />
+                <Tabla columns={tablaColumnas} data={dataNominas} loading={loadingNominas} />
               </CardBody>
             </Card>
           </Container>

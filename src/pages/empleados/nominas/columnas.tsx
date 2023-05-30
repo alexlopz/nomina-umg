@@ -5,6 +5,11 @@ const columns = [
     sortable: true,
   },
   {
+    name: 'Nombre',
+    selector: (row: { nombre: any }) => row.nombre,
+    sortable: true,
+  },
+  {
     name: 'Apellido',
     selector: (row: { apellido: any }) => row.apellido,
     sortable: true,
@@ -16,12 +21,7 @@ const columns = [
   },
   {
     name: 'Contrasena',
-    selector: (row: { contrasena: any }) => row.contrasena,
-    sortable: true,
-  },
-  {
-    name: 'Id Empleado',
-    selector: (row: { id_empleado: any }) => row.id_empleado,
+    selector: (row: { contraseña: any }) => row.contraseña,
     sortable: true,
   },
 ];
