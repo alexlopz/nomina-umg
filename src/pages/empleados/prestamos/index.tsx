@@ -68,13 +68,12 @@ const Prestamos: React.FC<IPlainObject> = () => {
       allowOverflow: true,
       button: true,
     };
-    columns.push(botones);
-    setTablaColumnas(columns);
+    setTablaColumnas([...columns, botones]);
   };
 
   useEffect(() => {
     insertarBotones();
-  }, [columns]);
+  }, []);
 
   useEffect(() => {
     if (successAdd) router.reload();

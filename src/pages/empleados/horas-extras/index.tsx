@@ -69,8 +69,7 @@ const HorasExtras: React.FC<IPlainObject> = () => {
       allowOverflow: true,
       button: true,
     };
-    columns.push(botones);
-    setTablaColumnas(columns);
+    setTablaColumnas([...columns, botones]);
   };
 
   useEffect(() => {
