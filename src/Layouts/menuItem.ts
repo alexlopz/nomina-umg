@@ -41,6 +41,10 @@ const items: MenuItemType[] = [
     icon: { name: 'arrowhead-right-outline' },
     children: [
       {
+        title: 'Ver Empleados',
+        link: { href: '/empleados/empleados' },
+      },
+      {
         title: 'Horas Extras',
         link: { href: '/empleados/horas-extras' },
       },

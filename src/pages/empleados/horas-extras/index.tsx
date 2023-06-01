@@ -49,7 +49,8 @@ const HorasExtras: React.FC<IPlainObject> = () => {
 
   const handleSelectChange = (event: any) => {
     const empleado = event.label;
-    setFormulario({ ...formulario, empleado: empleado });
+    const empleadoId = event.value;
+    setFormulario({ ...formulario, empleado: empleado, empleadoId });
   };
 
   const handleFechaChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,60 +1,68 @@
 // Packages
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { Timestamp, where } from 'firebase/firestore';
 
 // Components
 import { Button, Card, CardBody, CardHeader, Col, Container, Row } from '@paljs/ui';
-import PrestamosForm from 'components/Empleados/prestamos';
 import Tabla from 'components/Tabla';
 import Layout from 'Layouts';
 import columns from './columnas';
 import CustomSpinner from 'components/CustomSpinner';
+import EmpleadosForm from 'components/Empleados/empleados';
 
 // Definitions
-import { IPrestamo } from 'definitions/IPrestamo';
 import { IPlainObject } from 'definitions/IPlainObjects';
+import { IEmpleado } from 'definitions/IEmpleado';
 
 // Hooks
 import { useFirestoreAddDocument } from 'hooks/useFirestoreAddDocument';
 import { useFirestoreDeleteDocument } from 'hooks/useFirestoreDeleteDocument';
 import { useFirestoreCollection } from 'hooks/useFirestoreCollection';
-import { useRouter } from 'next/router';
+import { useFirestoreCollectionQuery } from 'hooks/useFirestoreCollectionQuery';
 
-const Prestamos: React.FC<IPlainObject> = () => {
+const Empleados: React.FC<IPlainObject> = () => {
   const [tablaColumnas, setTablaColumnas] = useState<any[]>([]);
-  const [formulario, setFormulario] = useState<IPrestamo>();
+  const [formulario, setFormulario] = useState<IEmpleado>();
   console.log('formulario', formulario);
   const router = useRouter();
 
-  // Traer los registros de la coleccion 'prestamos' para imprimirlos en
-  const { data: dataPrestamos, loading: loadingPrestamos } = useFirestoreCollection('prestamos');
+  // Traer los registros de la coleccion 'empleados' para imprimirlos en
+  const { data: dataPrestamos, loading: loadingPrestamos } = useFirestoreCollection('empleados');
 
-  // Traer los registros de empleados y bancos para mostrarlos en el formulario
-  const { data: dataEmpleados, loading: loadingEmpleados } = useFirestoreCollection('empleados');
+  // Traer los registros de departemos, bancos y puestos para mostrarlos en el formulario
+  const { data: dataDepartamentos, loading: loadingDepartamentos } = useFirestoreCollection('departamentos');
   const { data: dataBancos, loading: loadingBancos } = useFirestoreCollection('bancos');
+  const { data: dataPuestos, handleSubmit: handleSubmitPuestos } = useFirestoreCollectionQuery('puestos');
 
   // Agregar Documento
   const {
     success: successAdd,
     loading: isLoadingAdd,
     handleSubmit: handleSubmitAddDocument,
-  } = useFirestoreAddDocument('prestamos', formulario);
+  } = useFirestoreAddDocument('empleados', formulario);
+
   // Borrar Documento
-  const { loading: isLoadingDelete, handleSubmit: handleSubmitDeleteDocument } =
-    useFirestoreDeleteDocument('prestamos');
+  const { handleSubmit: handleSubmitDeleteDocument } = useFirestoreDeleteDocument('prestamos');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormulario({ ...formulario, [event.target.name]: event.target.value });
   };
 
-  const handleSelectChangeEmpleado = (event: any) => {
-    const empleado = event.label;
-    const empleadoId = event.value;
-    setFormulario({ ...formulario, empleado, empleadoId });
+  const handleSelectDepartamento = async (event: any) => {
+    const departamento = event.label;
+    const departamentoId = event.value;
+    handleSubmitPuestos(where('departamentoId', '==', departamentoId));
+    setFormulario({ ...formulario, departamento, departamentoId });
   };
 
-  const handleSelectChangeBanco = (event: any) => {
-    const banco = event.label;
-    setFormulario({ ...formulario, banco: banco });
+  const handleSelectChange = (event: any) => {
+    setFormulario({ ...formulario, [event.name]: event.value });
+  };
+
+  const handleFechaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fecha = new Date(event.target.value);
+    setFormulario({ ...formulario, [event.target.name]: Timestamp.fromDate(fecha) });
   };
 
   const insertarBotones = async () => {
@@ -85,17 +93,19 @@ const Prestamos: React.FC<IPlainObject> = () => {
       <Row>
         <Col>
           <Container>
-            <h1>Prestamos</h1>
+            <h1>Empleados</h1>
             <Card status="Primary">
-              <CardHeader>Ingresar Prestamos</CardHeader>
+              <CardHeader>Ingresar Empleado</CardHeader>
               <CardBody>
-                {!loadingEmpleados && !loadingBancos ? (
-                  <PrestamosForm
+                {!loadingDepartamentos && !loadingBancos ? (
+                  <EmpleadosForm
                     bancos={dataBancos}
-                    empleados={dataEmpleados}
-                    handleSelectChangeEmpleado={handleSelectChangeEmpleado}
-                    handleSelectChangeBanco={handleSelectChangeBanco}
+                    departamentos={dataDepartamentos}
+                    puestos={dataPuestos}
+                    handleSelectDepartamento={handleSelectDepartamento}
+                    handleSelectChange={handleSelectChange}
                     handleChange={handleChange}
+                    handleFechaChange={handleFechaChange}
                     handleSubmit={handleSubmitAddDocument}
                     loading={isLoadingAdd}
                   />
@@ -111,7 +121,7 @@ const Prestamos: React.FC<IPlainObject> = () => {
         <Col>
           <Container>
             <Card status="Success">
-              <CardHeader>Listado de Prestamos</CardHeader>
+              <CardHeader>Listado de Empleados</CardHeader>
               <CardBody>
                 <Tabla columns={tablaColumnas} data={dataPrestamos} loading={loadingPrestamos} />
               </CardBody>
@@ -123,4 +133,4 @@ const Prestamos: React.FC<IPlainObject> = () => {
   );
 };
 
-export default Prestamos;
+export default Empleados;
