@@ -2,7 +2,7 @@ import { InputGroup } from '@paljs/ui';
 import styled from 'styled-components';
 
 const InputWrap = styled(InputGroup)`
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `;
 
 const ButtonWrap = styled.div<{ align: string }>`
@@ -11,4 +11,8 @@ const ButtonWrap = styled.div<{ align: string }>`
   padding-top: 20px;
 `;
 
-export { InputWrap, ButtonWrap };
+const SelectWrap = styled.div`
+  margin-bottom: 10px;
+`;
+
+export { InputWrap, ButtonWrap, SelectWrap };

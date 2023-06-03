@@ -30,20 +30,20 @@ const data = [
   {
     id: 1,
     nombre: 'IGSS',
-    porcentaje: '11',
+    porcentaje: '4.83',
     descripcion: 'Seguro Social',
   },
   {
     id: 2,
-    nombre: 'IGSS',
-    porcentaje: '11',
-    descripcion: 'Seguro Social',
+    nombre: 'IRTRA',
+    porcentaje: '2',
+    descripcion: 'Seguro de recreacion',
   },
   {
     id: 3,
-    nombre: 'IGSS',
-    porcentaje: '11',
-    descripcion: 'Seguro Social',
+    nombre: 'INTECAP',
+    porcentaje: '1',
+    descripcion: 'Seguro de capacitacion',
   },
 ];
 

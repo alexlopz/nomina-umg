@@ -40,7 +40,7 @@ const TiposComisiones = () => {
       <Row>
         <Col>
           <Container>
-            <h1>Tipo de comisiones</h1>
+            <h1>Tipo de Comisiones</h1>
             <Card status="Primary">
               <CardHeader>Ingresar comision</CardHeader>
               <CardBody>
