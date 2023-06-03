@@ -67,6 +67,20 @@ const items: MenuItemType[] = [
     ],
   },
   {
+    title: 'Nomina',
+    icon: { name: 'arrowhead-right-outline' },
+    children: [
+      {
+        title: 'Nomina general',
+        link: { href: '/nomina/nomina' },
+      },
+      {
+        title: 'Nomina empleado',
+        link: { href: '/nomina/empleado' },
+      },
+    ],
+  },
+  {
     title: 'Autenticacion',
     icon: { name: 'lock-outline' },
     children: [
