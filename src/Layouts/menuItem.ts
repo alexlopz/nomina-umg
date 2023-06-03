@@ -41,8 +41,20 @@ const items: MenuItemType[] = [
     icon: { name: 'arrowhead-right-outline' },
     children: [
       {
+        title: 'Ver Empleados',
+        link: { href: '/empleados/empleados' },
+      },
+      {
         title: 'Horas Extras',
         link: { href: '/empleados/horas-extras' },
+      },
+      {
+        title: 'Deducciones',
+        link: { href: '/empleados/deducciones' },
+      },
+      {
+        title: 'Bonificaciones',
+        link: { href: '/empleados/bonificaciones' },
       },
       {
         title: 'Prestamos',
@@ -51,6 +63,20 @@ const items: MenuItemType[] = [
       {
         title: 'Usuario',
         link: { href: '/empleados/usuario' },
+      },
+    ],
+  },
+  {
+    title: 'Nomina',
+    icon: { name: 'arrowhead-right-outline' },
+    children: [
+      {
+        title: 'Nomina general',
+        link: { href: '/nomina/nomina' },
+      },
+      {
+        title: 'Nomina empleado',
+        link: { href: '/nomina/empleado' },
       },
     ],
   },

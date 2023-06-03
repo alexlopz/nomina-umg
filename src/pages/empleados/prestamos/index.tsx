@@ -48,7 +48,8 @@ const Prestamos: React.FC<IPlainObject> = () => {
 
   const handleSelectChangeEmpleado = (event: any) => {
     const empleado = event.label;
-    setFormulario({ ...formulario, empleado: empleado });
+    const empleadoId = event.value;
+    setFormulario({ ...formulario, empleado, empleadoId });
   };
 
   const handleSelectChangeBanco = (event: any) => {
@@ -68,13 +69,12 @@ const Prestamos: React.FC<IPlainObject> = () => {
       allowOverflow: true,
       button: true,
     };
-    columns.push(botones);
-    setTablaColumnas(columns);
+    setTablaColumnas([...columns, botones]);
   };
 
   useEffect(() => {
     insertarBotones();
-  }, [columns]);
+  }, []);
 
   useEffect(() => {
     if (successAdd) router.reload();

@@ -49,7 +49,8 @@ const HorasExtras: React.FC<IPlainObject> = () => {
 
   const handleSelectChange = (event: any) => {
     const empleado = event.label;
-    setFormulario({ ...formulario, empleado: empleado });
+    const empleadoId = event.value;
+    setFormulario({ ...formulario, empleado: empleado, empleadoId });
   };
 
   const handleFechaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,8 +70,7 @@ const HorasExtras: React.FC<IPlainObject> = () => {
       allowOverflow: true,
       button: true,
     };
-    columns.push(botones);
-    setTablaColumnas(columns);
+    setTablaColumnas([...columns, botones]);
   };
 
   useEffect(() => {
