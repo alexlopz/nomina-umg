@@ -49,6 +49,14 @@ const items: MenuItemType[] = [
         link: { href: '/empleados/horas-extras' },
       },
       {
+        title: 'Deducciones',
+        link: { href: '/empleados/deducciones' },
+      },
+      {
+        title: 'Bonificaciones',
+        link: { href: '/empleados/bonificaciones' },
+      },
+      {
         title: 'Prestamos',
         link: { href: '/empleados/prestamos' },
       },

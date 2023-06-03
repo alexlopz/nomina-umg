@@ -171,6 +171,7 @@ const EmpleadosForm: React.FC<IPlainObject> = ({
           </SelectWrap>
         </Col>
         <Col breakPoint={{ xs: 12, sm: 8 }}>
+          <label>Direccion:</label>
           <InputWrap fullWidth size="Medium">
             <input
               type="address"
@@ -183,6 +184,7 @@ const EmpleadosForm: React.FC<IPlainObject> = ({
           </InputWrap>
         </Col>
         <Col breakPoint={{ xs: 12, sm: 4 }}>
+          <label>Telefono:</label>
           <InputWrap fullWidth size="Medium">
             <input
               type="tel"
