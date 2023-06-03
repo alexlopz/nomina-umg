@@ -1,27 +1,39 @@
+import { formatDate } from 'utilities/formatDate';
+
 const columns = [
   {
-    name: 'Empleado',
-    selector: (row: { nombres: string; apellidos: string }) => `${row.nombres} ${row.apellidos}`,
+    name: 'Nombres',
+    selector: (row: { nombres: string }) => row.nombres,
     sortable: true,
   },
   {
-    name: 'Banco',
-    selector: (row: { banco: any }) => row.banco,
+    name: 'Apellidos',
+    selector: (row: { apellidos: string }) => row.apellidos,
     sortable: true,
   },
   {
-    name: 'Cuenta',
-    selector: (row: { cuenta: any }) => row.cuenta,
+    name: 'Dpi',
+    selector: (row: { dpi: any }) => row.dpi,
     sortable: true,
   },
   {
-    name: 'Cuotas',
-    selector: (row: { cuota: any }) => row.cuota,
+    name: 'Puesto',
+    selector: (row: { puesto: any }) => row.puesto,
     sortable: true,
   },
   {
-    name: 'Monto',
-    selector: (row: { monto: any }) => row.monto,
+    name: 'Departamento',
+    selector: (row: { departamento: any }) => row.departamento,
+    sortable: true,
+  },
+  {
+    name: 'Fecha Ingreso',
+    selector: (row: { fecha_ingreso: any }) => formatDate(row.fecha_ingreso.toDate().toISOString()),
+    sortable: true,
+  },
+  {
+    name: 'Estado',
+    selector: (row: { estado: any }) => row.estado,
     sortable: true,
   },
 ];

@@ -2,7 +2,7 @@ export interface IEmpleado {
   id?: string;
   nombres?: string;
   apellidos?: string;
-  dpi?: number;
+  dpi?: number | null;
   correo?: string;
   nit?: string;
   nacimiento?: any;
@@ -12,12 +12,14 @@ export interface IEmpleado {
   departamento?: string;
   departamentoId?: string;
   puesto?: string;
+  puestoId?: string;
   jornada?: string;
   sueldo?: number;
   periodo_pago?: string;
   fecha_ingreso?: any;
   estado?: string;
-  numero_cuenta?: string;
+  banco_cuenta?: string;
   tipo_cuenta?: string;
   banco?: string;
+  bancoId?: string;
 }

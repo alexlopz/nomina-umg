@@ -6,7 +6,7 @@ export const getPDF = async (data: any): Promise<any> => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: data,
+      body: JSON.stringify(data),
     });
     if (!response.ok) {
       throw new Error('error');
